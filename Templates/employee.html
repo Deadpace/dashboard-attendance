@@ -27,10 +27,10 @@
         <tbody>
             {% for i in file %}
             <tr>
-                <td>{{i}}</td>
-                <td>{{file[i]["Name"]}}</td>
-                <td>{{file[i]["Time"]}}</td>
-                <td>{{file[i]["Check Out Time"]}}</td>
+                <td>{{i["_id"]}}</td>
+                <td>{{i["Name"]}}</td>
+                <td>{{i["Time"]}}</td>
+                <td>{{i["Check Out Time"]}}</td>
             </tr>
             {% endfor %}
         </tbody>

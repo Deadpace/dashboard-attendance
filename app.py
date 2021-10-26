@@ -1,20 +1,39 @@
 from flask import Flask, render_template, request, flash, redirect, url_for
 import os
+import json
+import pymongo
 import pandas as pd
 
 app = Flask(__name__)
 app.secret_key = "secret!"
-data = [file.split('.')[0] for file in os.listdir("data")]
-dates = [file.split('_')[1] for file in data]
 
+
+#loading config.json file for configurations
+with open('config.json') as f:
+    config = json.load(f)
+
+mongodb_url = config["mongodb_url"]
+database_name = config["database_name"]
+client = pymongo.MongoClient(mongodb_url)
+DBlist = client.list_database_names()
+if database_name in DBlist:
+    print(f"DB: '{database_name}' exists")
+else:
+    print(f"DB: '{database_name}' not yet present OR no collection is present in the DB")
+
+database = client[database_name]
+ 
 
 @app.route('/')
 def index():
+    data = sorted(database.list_collection_names(),reverse=True)
+    dates = [file.split('_')[1] for file in data]
     return render_template('index.html',dates = enumerate(zip(dates,data)))
 
 @app.route('/employee/<string:file_name>')
 def employee(file_name):
-    file = pd.read_csv(f"data//{file_name}.csv",usecols =['Name','Time','Check Out Time']).to_dict(orient="index")
+    collection = database[file_name]
+    file = [i for i in collection.find()]
     return render_template('employee.html',file= file)
 
 @app.route('/add_employee')
