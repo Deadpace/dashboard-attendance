@@ -19,15 +19,16 @@ def employee(file_name):
 
 @app.route('/add_employee')
 def add_employee():
-    return render_template("add-employee.html")
+    return render_template("add-employee.html", style = "display: none")
 
 @app.route('/add_into_data',methods=["POST"])
 def add_into_data():
-    if request.form:
-        data = request.form
-        print(data)
-        flash("Employee Added")
-        return redirect(url_for("add_employee"))
+    if request.method == "POST":
+        if request.form:
+            data = request.form
+            print(data)
+            # flash("Employee Added")
+            return render_template("add-employee.html", style = "")
 
 if __name__== "__main__":
     app.run(debug=True)
