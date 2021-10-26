@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, flash, redirect, url_for
 import os
 import json
 import pymongo
-import pandas as pd
 
 app = Flask(__name__)
 app.secret_key = "secret!"
@@ -22,7 +21,7 @@ else:
     print(f"DB: '{database_name}' not yet present OR no collection is present in the DB")
 
 database = client[database_name]
- 
+
 
 @app.route('/')
 def index():

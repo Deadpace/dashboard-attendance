@@ -1,5 +1,5 @@
 notebook/
-
+generate_login_data.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
