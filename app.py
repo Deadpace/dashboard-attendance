@@ -1,5 +1,4 @@
-from flask import Flask, render_template, request, flash, redirect, url_for
-import os
+from flask import Flask, render_template, request
 import json
 import pymongo
 
