@@ -12,6 +12,8 @@ with open('config.json') as f:
 
 mongodb_url = config["mongodb_url"]
 database_name = config["database_name"]
+
+
 client = pymongo.MongoClient(mongodb_url)
 DBlist = client.list_database_names()
 if database_name in DBlist:
@@ -20,7 +22,8 @@ else:
     print(f"DB: '{database_name}' not yet present OR no collection is present in the DB")
 
 database = client[database_name]
-
+login_database_name = client[config["login_database_name"]]
+login_collection = login_database_name[config["login_collection_name"]]
 
 @app.route('/')
 def index():
@@ -42,9 +45,9 @@ def add_employee():
 def add_into_data():
     if request.method == "POST":
         if request.form:
-            data = request.form
+            data = dict(request.form)
             print(data)
-            # flash("Employee Added")
+            login_collection.insert_one(data)
             return render_template("add-employee.html", style = "")
 
 if __name__== "__main__":
