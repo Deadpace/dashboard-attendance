@@ -1,6 +1,7 @@
 notebook/
 generate_login_data.py
 data/
+ngrok.exe
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
