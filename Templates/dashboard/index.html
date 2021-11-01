@@ -23,12 +23,21 @@
       </tr>
     </thead>
     <tbody>
+      {% if month %}
+      {% for date in dates %}
+      <tr>
+        <td>{{date[0]+1}}</td>
+        <td><a href="/dashboard/{{date[1]}}">{{date[1]}}</a></td>
+      </tr>
+      {% endfor %}
+      {% else %}
       {% for date in dates %}
       <tr>
         <td>{{date[0]+1}}</td>
         <td><a href="/employee/{{date[1][1]}}">{{date[1][0]}}</a></td>
       </tr>
       {% endfor %}
+      {% endif %}
     </tbody>
   </table>
 </div>
