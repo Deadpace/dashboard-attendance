@@ -19,14 +19,15 @@
             <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="{{url_for('dashboard')}}">Attendance Management
                 System</a>
             <div class="w-50 p-2">
-                <h3 class="text-center" style="color:white">Welcome <strong>{{session["username"]}}</strong></h3>
+                <h3 class="text-center" style="color:white"><strong><u>Welcome {{session["username"]}}</u></strong></h3>
             </div>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                <a class="nav-link btn btn-sm btn-light dropdown-toggle dropdown-toggle-split me-4 mb-2" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false">
+                    <span class="visually-hidden">Toggle Dropdown</span>
                     Settings
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Change
                         Password</a>
                     <a class="dropdown-item" href="{{url_for('add_employee')}}">Add New Employee</a>
@@ -81,21 +82,21 @@
                 <div class="position-sticky pt-3">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{url_for('dashboard')}}">
+                            <a class="nav-link text-dark" aria-current="page" href="{{url_for('dashboard')}}">
                                 <span data-feather="home"></span>
-                                Dashboard
+                                <u>Dashboard</u>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url_for('all_employees')}}">
+                            <a class="nav-link text-dark" href="{{url_for('all_employees')}}">
                                 <span data-feather="file"></span>
-                                Check Employee's
+                               <u>Check Employee's</u> 
                             </a>
                         </li>
                     </ul>
 
                     <h6
-                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-uppercase">
                         <span>Saved reports</span>
                         <a class="link-secondary" href="#" aria-label="Add a new report">
                             <span data-feather="plus-circle"></span>
@@ -103,9 +104,9 @@
                     </h6>
                     <ul class="nav flex-column mb-2">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url_for('generate_report')}}">
+                            <a class="nav-link text-dark" href="{{url_for('generate_report')}}">
                                 <span data-feather="file-text"></span>
-                                Reports
+                                <u>Reports</u>
                             </a>
                         </li>
                     </ul>
